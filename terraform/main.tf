@@ -1,3 +1,9 @@
+module "ecr" {
+  source = "./infrastructure/modules/aws/ecr"
+  app_name = local.app_name
+  environment = local.environment
+}
+
 module "security-groups" {
   source = "./infrastructure/modules/aws/vpc/security_groups"
   vpc_id = local.vpc_id
@@ -105,8 +111,8 @@ locals {
   certificate_arn = ""
   container_definition = jsonencode({
     "name" = "${local.app_name}-${local.environment}"
-    "image" = format("%s.dkr.ecr.%s.amazonaws.com/%s:%s",
-    var.aws_account_id, var.aws_region, var.ecr_name, var.img_tag)
+    "image" = format("%s.dkr.ecr.%s.amazonaws.com/%s-%s:%s",
+    var.aws_account_id, var.aws_region, var.app_name, var.environment, var.img_tag)
     "essential" = true
     "networkMode" = "awsvpc"
     "portMappings" = [
