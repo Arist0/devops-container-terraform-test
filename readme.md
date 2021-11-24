@@ -30,3 +30,5 @@
 ## Build docker image
 1. Edit makefile to set ECR_NAME
 2. Use `make build` to build and push a new image to your private registry 
+
+## [Build a Docker Image and publish it to AWS ECR using Github Actions](https://aws.plainenglish.io/build-a-docker-image-and-publish-it-to-aws-ecr-using-github-actions-f20accd774c3)
